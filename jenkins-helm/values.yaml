@@ -1,0 +1,31 @@
+namespace: ci-cd
+name: jenkins
+image: jfrog.it-academy.by/public/jenkins-ci:vdshishlo
+mail: mnogosemok@bk.ru
+
+
+service:
+ master:
+   port: 8080
+   targetPort: 8080
+ slave:
+   port: 50000 
+   targetPort: 50000 
+
+
+requests:
+  cpu: 1000m
+  memory: 1000Mi
+limits:
+  cpu: 2300m
+  memory: 2300Mi
+
+nfs:
+  server: 192.168.37.105
+  path: /mnt/IT-Academy/nfs-data/sa2-20-22/Vadim_Shishlo/jenkins
+
+ingress:
+  class: nginx
+  host: jenkins-helm.k8s-55.sa
+  alias: jenkins-helm.k8s-56.sa
+  port: 8080
